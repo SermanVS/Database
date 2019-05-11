@@ -128,11 +128,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Database.h" />
-    <ClInclude Include="Source.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="In.txt" />
     <Text Include="Out.txt" />
+    <Text Include="Support.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

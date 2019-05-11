@@ -2,8 +2,6 @@
    |          |          |          |         M||   Project|  Customer|   Progers|          
    |          |          |          |         S||   Address|  Customer|    Weight| Transport
 --------------------------------------------------------------------------------------------
-0       Gabe      Newel         45     Prog-s          dfgf     fdgdfg       2342
-1      sdasd     gdfgdf         32     Prog-s          sdfs      fgfdg        565
-2      fsdfs     hfghfg         34     Management    fdhshs     srhseh          9
-3     asadas     gdfgdf         23     Shipping      dfgfdg      sfsef        234      Auto
-4      asdas     sdfsdf         34     Prog-s       fdgbfdb       adaw        567
+0  |      Bill|     Gates|        54|    Prog-s|| Microsoft|     Intel|      1024|
+1  |    Pepper|     Potts|        34|Management||  Avengers|      Tony|         9|
+2  |      Mike|     Tyson|        67|Shipping  || Somewhere|    Boxing|       190|      Auto

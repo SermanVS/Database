@@ -26,15 +26,15 @@
     <ClInclude Include="Database.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="In.txt">
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="Out.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Support.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
