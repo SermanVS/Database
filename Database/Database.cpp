@@ -21,15 +21,15 @@ Card input() {
 	printf("Delivery man - 'Shipping'\n");
 	(void)scanf("%s", dept_type);
 	dept_type = (char*)realloc(dept_type, sizeof(char) * (strlen(dept_type) + 1));
-	printf("Enter a name: ");
-	(void)scanf("%s", Name);
-	Name = (char*)realloc(Name, sizeof(char) * (strlen(Name) + 1));
-	printf("Enter a last name: ");
-	(void)scanf("%s", LastName);
-	LastName = (char*)realloc(LastName, sizeof(char) * (strlen(LastName) + 1));
-	printf("Enter an age: ");
-	(void)scanf("%d", &age);
 	if (strcmp(dept_type, "Prog-s") == 0) {
+		printf("Enter a name: ");
+		(void)scanf("%s", Name);
+		Name = (char*)realloc(Name, sizeof(char) * (strlen(Name) + 1));
+		printf("Enter a last name: ");
+		(void)scanf("%s", LastName);
+		LastName = (char*)realloc(LastName, sizeof(char) * (strlen(LastName) + 1));
+		printf("Enter an age: ");
+		(void)scanf("%d", &age);
 		printf("Enter a project code name: ");
 		getchar();
 		gets_s(project, 255);
@@ -42,16 +42,34 @@ Card input() {
 		return Card(count++, Name, LastName, age, dept_type, project, spec1, spec2);
 	}
 	if (strcmp(dept_type, "Management") == 0) {
+		printf("Enter a name: ");
+		(void)scanf("%s", Name);
+		Name = (char*)realloc(Name, sizeof(char) * (strlen(Name) + 1));
+		printf("Enter a last name: ");
+		(void)scanf("%s", LastName);
+		LastName = (char*)realloc(LastName, sizeof(char) * (strlen(LastName) + 1));
+		printf("Enter an age: ");
+		(void)scanf("%d", &age);
 		printf("Enter a project name: ");
 		getchar();
 		gets_s(project, 255);
+		project = (char*)realloc(project, sizeof(char) * (strlen(project) + 1));
 		printf("Enter the client's first name: ");
 		gets_s(spec1, 255);
+		spec1 = (char*)realloc(spec1, sizeof(char) * (strlen(spec1) + 1));
 		printf("Enter the number of programmers: ");
 		(void)scanf("%d", &spec2);
 		return Card(count++, Name, LastName, age, dept_type, project, spec1, spec2);
 	}
 	if (strcmp(dept_type, "Shipping") == 0) {
+		printf("Enter a name: ");
+		(void)scanf("%s", Name);
+		Name = (char*)realloc(Name, sizeof(char) * (strlen(Name) + 1));
+		printf("Enter a last name: ");
+		(void)scanf("%s", LastName);
+		LastName = (char*)realloc(LastName, sizeof(char) * (strlen(LastName) + 1));
+		printf("Enter an age: ");
+		(void)scanf("%d", &age);
 		char* address = (char*)malloc(sizeof(char) * 256);
 		char* customer = (char*)malloc(sizeof(char) * 256);
 		int weight;
@@ -74,12 +92,8 @@ Card input() {
 	else return Card();
 }
 Card::Card() {
-	char* c = (char*)malloc(sizeof(char) * 7);
-	strcpy(c, "Sergei");
-	Name = (char*)malloc(sizeof(char) * 7);
-	LastName = (char*)malloc(sizeof(char) * 7);
-	strcpy(Name, c);
-	strcpy(LastName, c);
+	Name = nullptr;
+	LastName = nullptr;
 	age = 0;
 }
 
@@ -90,8 +104,6 @@ Card::Card(int _index, char* _Name, char* _LastName, int _age, char* _dept_type,
 	strcpy(Name, _Name);
 	LastName = (char*)malloc(sizeof(char) * (strlen(_LastName) + 1));
 	strcpy(LastName, _LastName);
-	//char* project = (char*)malloc(sizeof(char) * (strlen(_project) + 1));
-	//char* spec1 = (char*)malloc(sizeof(char) * (strlen(_spec1) + 1));
 	if (strcmp(_dept_type, "Prog-s") == 0) dept_type = DEPT_PROGRAMMERS;
 	if (strcmp(_dept_type, "Management") == 0) dept_type = DEPT_MANAGEMENT;
 	if (dept_type == DEPT_PROGRAMMERS) p_task = ProgTask(_project, _spec1, _spec2);
@@ -105,25 +117,32 @@ Card::Card(int _index, char* _Name, char* _LastName, int _age, char* _dept_type,
 }
 
 Card::ProgTask::ProgTask(char* _project, char* _cpu, int _mmr) {
-	Project = _project;
-	CPU = _cpu;
+	Project = (char*)malloc(sizeof(char) * (strlen(_project) + 1));
+	CPU = (char*)malloc(sizeof(char) * (strlen(_cpu) + 1));
+	strcpy(Project, _project);
+	strcpy(CPU, _cpu);
 	Memory = _mmr;
 }
 
 Card::ManagerTask::ManagerTask(char* _project, char* _cust, int _prnum) {
-	Project = _project;
-	Customer = _cust;
+	Project = (char*)malloc(sizeof(char) * (strlen(_project) + 1));
+	Customer = (char*)malloc(sizeof(char) * (strlen(_cust) + 1));
+	strcpy(Project, _project);
+	strcpy(Customer, _cust);
 	ProgrammersNum = _prnum;
 }
 
 Card::ShipTask::ShipTask(char* _adr, char* _cust, int _weight, char* _trans) {
-	Address = _adr;
-	Customer = _cust;
+	Customer = (char*)malloc(sizeof(char) * (strlen(_cust) + 1));
+	Address = (char*)malloc(sizeof(char) * (strlen(_adr) + 1));
+	strcpy(Address, _adr);
+	strcpy(Customer, _cust);
 	Weight = _weight;
-	if (strcmp(_trans, "Train") == 0) tr_type = TRANSP_TRAIN;
-	if (strcmp(_trans, "Auto") == 0) tr_type = TRANSP_AUTO;
-	if (strcmp(_trans, "Plane") == 0) tr_type = TRANSP_AERO;
-	if (strcmp(_trans, "Ship") == 0) tr_type = TRANSP_SHIP;
+	if (_trans[0] == 'T') tr_type = TRANSP_TRAIN;
+	if (_trans[0] == 'A') tr_type = TRANSP_AUTO;
+	if (_trans[0] == 'P') tr_type = TRANSP_AERO;
+	if (_trans[0] == 'S') tr_type = TRANSP_SHIP;
+	//Because of trash that is stored with the transport type after the word itsefl, we check only the first letter.
 }
 Card::ProgTask::ProgTask() {
 	Project = nullptr;
@@ -149,9 +168,9 @@ void print1(list<Card> database1) {
 	}
 }
 void print(Card card) {
-	char prog[] = "Prog-s";
-	char man[] = "Management";
-	char del[] = "Shipping  ";
+	char prog[] = "   Prog-s     ";
+	char man[] =  "   Management ";
+	char del[] =  "   Shipping   ";
 	char tr[] = "Train";
 	char au[] = "Auto";
 	char pl[] = "Plane";
@@ -243,7 +262,10 @@ void print_db(Card card, FILE* f) {
 	}
 }
 
-void remove(list<Card> &db1, int num) {
+void remove(list<Card> &db1) {
+	printf("Which element would you like to remove?\n");
+	int num;
+	(void)scanf("%d", &num);
 	list<Card>::iterator it = db1.begin();
 	for (int i = 0; i < num; i++) {
 		it++;
@@ -257,7 +279,6 @@ void remove(list<Card> &db1, int num) {
 
 list<Card> read_from_file1() {
 	list<Card> db;
-	
 	char* str = (char*)malloc(sizeof(char) * 256);
 	char file_name[] = "In.txt";
 	char file_name1[] = "Support.txt";
@@ -269,11 +290,9 @@ list<Card> read_from_file1() {
 	int lastspec;
 	int i = 0;
 	FILE* f;
-	FILE* f1;
 	int index;
 	int count = 0;
 	if ((f = fopen(file_name, "r")) == NULL) printf("File error\n");
-	if ((f1 = fopen(file_name1, "w+")) == NULL) printf("File error\n");
 	while (!feof(f)) {
 		fgets(str, 256, f);
 		char* name = (char*)malloc(sizeof(char) * 256);
@@ -286,62 +305,37 @@ list<Card> read_from_file1() {
 			istr = strtok(str, sep);
 			int k = 0;
 			while (istr != NULL) {
-				fprintf(f1, "%s\n", istr);
 				switch (k) {
-				case 0:
-					//index = atoi(istr);
-					//index = 0;
-					printf("index = %d\n", count);
-					//printf("%s\n", substr);
-					break;
 				case 1:
 					strcpy(name, istr);
 					name = (char*)realloc(name, sizeof(char) * (strlen(name) + 1));
-					printf("name = %s\n", name);
-					//printf("%s\n", substr);
 					break;
 				case 2:
 					strcpy(lastname, istr);
 					lastname = (char*)realloc(lastname, sizeof(char) * (strlen(lastname) + 1));
-					printf("lastname = %s\n", lastname);
-					//printf("%s\n", substr);
 					break;
 				case 3:
 					age = atoi(istr);
-					//age = 0;
-					printf("age = %d\n", age);
-					//printf("%s\n", substr);
 					break;
 				case 4:
 					strcpy(dept_type, istr);
 					dept_type = (char*)realloc(dept_type, sizeof(char) * (strlen(dept_type) + 1));
-					printf("dept_type = %s\n", dept_type);
-					//printf("%s\n", substr);
 					break;
 				case 5:
 					strcpy(spec1, istr);
 					spec1 = (char*)realloc(spec1, sizeof(char) * (strlen(spec1) + 1));
-					printf("spec1 = %s\n", spec1);
-					//printf("%s\n", substr);
 					break;
 				case 6:
 					strcpy(spec2, istr);
 					spec2 = (char*)realloc(spec2, sizeof(char) * (strlen(spec2) + 1));
-					printf("spec2 = %s\n", spec2);
-					//printf("%s\n", substr);
 					break;
 				case 7:
 					lastspec = atoi(istr);
-					//lastspec = 0;
-					printf("lastspec = %d\n", lastspec);
-					//printf("%s\n", substr);
 					break;
 				case 8:
 					if (strcmp(dept_type, "Shipping") == 0) {
 						strcpy(trans, istr);
 						trans = (char*)realloc(trans, sizeof(char) * (strlen(trans) + 1));
-						printf("trans = %s\n", trans);
-						//printf("%s\n", substr);
 					}
 					break;
 				}
@@ -360,21 +354,18 @@ list<Card> read_from_file1() {
 			}
 			count++;
 		}
-		//free(name);
-		//free(lastname);
-		//free(dept_type);
-		//free(spec1);
-		//free(spec2);
-		//free(trans);
+		free(dept_type);
+		free(spec1);
+		free(spec2);
+		free(trans);
 	}
 	for (int g = 0; g < i; g++) {
 		db.push_back(cards[g]);
 	}
 	fclose(f);
-	fclose(f1);
 	free(str);
 	free(istr);
 	free(sub);
-	
+
 	return db;
 }

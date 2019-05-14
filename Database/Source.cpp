@@ -26,10 +26,7 @@ LOOP:
 			database1.push_back(input());
 		}
 		if (strcmp(c, "remove") == 0) {
-			printf("Which element would you like to remove?\n");
-			int temp;
-			(void)scanf("%d", &temp);
-			remove(database1, temp);
+			remove(database1);
 		}
 		if (strcmp(c, "fprint") == 0) {
 			print_db1(database1);

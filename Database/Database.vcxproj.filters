@@ -34,8 +34,5 @@
     <Text Include="Out.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="Support.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
   </ItemGroup>
 </Project>

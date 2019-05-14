@@ -63,7 +63,7 @@ void print(Card card);
 void print1(list<Card> database1);
 void print_db(Card card, FILE* f);
 void print_db1(list<Card> database1);
-void remove(list<Card> &db1, int num);
+void remove(list<Card> &db1);
 list<Card> read_from_file();
 list<Card> read_from_file1();
 Card parse(char* str);

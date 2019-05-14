@@ -1,7 +1,3 @@
 ﻿  Database.cpp
-C:\Users\User\source\repos\Database1\Database\Database.cpp(312): warning C4101: 'j': unreferenced local variable
-C:\Users\User\source\repos\Database1\Database\Database.cpp(312): warning C4101: 'i': unreferenced local variable
-C:\Users\User\source\repos\Database1\Database\Database.cpp(336): warning C4101: 'j': unreferenced local variable
-C:\Users\User\source\repos\Database1\Database\Database.cpp(336): warning C4101: 'i': unreferenced local variable
-C:\Users\User\source\repos\Database1\Database\Database.cpp(469): warning C4101: 'index': unreferenced local variable
+C:\Users\User\source\repos\Database1\Database\Database.cpp(293): warning C4101: 'index': unreferenced local variable
   Database.vcxproj -> C:\Users\User\source\repos\Database1\x64\Debug\Database.exe
